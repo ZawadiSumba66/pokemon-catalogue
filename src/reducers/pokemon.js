@@ -1,23 +1,33 @@
-import { GET_POKEMONS } from '../actions/type';
-import { CATCH_ERROR } from '../actions/type';
+import { LOADING_POKEMONS, GET_POKEMONS, CATCH_ERROR } from '../actions/type';
 
 const initialState = {
   pokemons: [],
-  loading:true
+  loading: false,
+  error:''
 };
 
-export default function pokemonReducer(state = initialState,action) {
-   switch(action.type){
-       case GET_POKEMONS:
-       return {
+export default function pokemonReducer(state = initialState, action) {
+  switch (action.type) {
+    case LOADING_POKEMONS:
+      return {
         ...state,
-        pokemons:action.payload,
-        loading:false
-       }
-       case CATCH_ERROR:
-       return{
-        loading: false, 
-        error: action.payload 
-    }
-   }
+        loading:true,
+      }
+    case GET_POKEMONS:
+      return {
+        pokemons: [
+          ...state.pokemons,
+          action.payload,
+        ],
+        loading: false,
+      };
+    case CATCH_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
 }

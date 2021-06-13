@@ -1,2 +1,3 @@
 export const GET_POKEMONS = 'GET_POKEMONS';
-export const CATCH_ERROR = 'CATCH_ERROR'
+export const CATCH_ERROR = 'CATCH_ERROR';
+export const LOADING_POKEMONS = 'LOADING_POKEMONS'
